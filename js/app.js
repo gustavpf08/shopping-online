@@ -14,11 +14,34 @@ function gettingQuantity() {
 selectedBtn.addEventListener("click", gettingIndexForm);
 selectedBtn.addEventListener("click", gettingQuantity);
 
+let productIndex = gettingIndexForm();
+
+let headphoneValue = 0;
+let smartphoneValue = 0;
+let vrHeadset = 0;
+
+function addValueProduct(value) {
+  if (value === 0) {
+    headphoneValue = 100;
+    return headphoneValue;
+  }
+
+  if (value === 1) {
+    smartphoneValue = 1400;
+    return smartphoneValue;
+  }
+
+  if (value === 2) {
+    vrHeadset = 5000;
+    return vrHeadset;
+  }
+}
+
 function calculation() {
   let quantityValue = gettingQuantity();
-  let product = gettingIndexForm();
+  let values = addValueProduct(productIndex);
 
-  console.log(product);
+  console.log(values);
   console.log(quantityValue);
 }
 
