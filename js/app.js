@@ -1,6 +1,8 @@
 let formOptions = document.getElementById("produto");
 let selectedBtn = document.querySelector(".botao-adicionar");
 
+let sumTotalValues = [];
+
 function gettingIndexForm() {
   let index = formOptions.selectedIndex;
   return index;
@@ -40,10 +42,11 @@ function calculation() {
   let quantityValue = gettingQuantity();
   let values = addValueProduct(productIndex);
 
-  console.log(values);
-  console.log(quantityValue);
+  let calc = values * quantityValue;
+  sumTotalValues.push(calc);
 }
 
 function adicionar() {
   calculation();
+  console.log(sumTotalValues);
 }
