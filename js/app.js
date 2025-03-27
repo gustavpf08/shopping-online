@@ -14,8 +14,6 @@ function gettingQuantity() {
 selectedBtn.addEventListener("click", gettingIndexForm);
 selectedBtn.addEventListener("click", gettingQuantity);
 
-let productIndex = gettingIndexForm();
-
 let headphoneValue = 0;
 let smartphoneValue = 0;
 let vrHeadset = 0;
@@ -38,6 +36,7 @@ function addValueProduct(value) {
 }
 
 function calculation() {
+  let productIndex = gettingIndexForm();
   let quantityValue = gettingQuantity();
   let values = addValueProduct(productIndex);
 
