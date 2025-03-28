@@ -1,7 +1,7 @@
 let formOptions = document.getElementById("produto");
 let selectedBtn = document.querySelector(".botao-adicionar");
 
-let sumTotalValues = [];
+let sumTotalValues = [1400];
 
 function gettingIndexForm() {
   let index = formOptions.selectedIndex;
@@ -52,8 +52,15 @@ function calculation() {
   return sum;
 }
 
+function changingTextTotal(tag, text) {
+  let selectingTag = document.querySelector(tag);
+  selectingTag.innerHTML = text;
+}
+
 function adicionar() {
   let total = calculation();
   console.log(sumTotalValues);
   console.log(total);
+
+  changingTextTotal("#valor-total", `R$${total},00`);
 }
