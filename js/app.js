@@ -41,12 +41,19 @@ function calculation() {
   let productIndex = gettingIndexForm();
   let quantityValue = gettingQuantity();
   let values = addValueProduct(productIndex);
+  let sum = 0;
 
   let calc = values * quantityValue;
   sumTotalValues.push(calc);
+
+  for (let i = 0; i < sumTotalValues.length; i++) {
+    sum += sumTotalValues[i];
+  }
+  return sum;
 }
 
 function adicionar() {
-  calculation();
+  let total = calculation();
   console.log(sumTotalValues);
+  console.log(total);
 }
