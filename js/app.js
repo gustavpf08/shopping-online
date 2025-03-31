@@ -18,7 +18,11 @@ selectedBtn.addEventListener("click", gettingQuantity);
 
 let headphoneValue = 0;
 let smartphoneValue = 0;
-let vrHeadset = 0;
+let vrHeadsetValue = 0;
+
+let headphone = "Fone de Ouvido";
+let smartphone = "Celular";
+let vrHeadset = "Óculos VR";
 
 function addValueProduct(value) {
   if (value === 0) {
@@ -32,8 +36,8 @@ function addValueProduct(value) {
   }
 
   if (value === 2) {
-    vrHeadset = 5000;
-    return vrHeadset;
+    vrHeadsetValue = 5000;
+    return vrHeadsetValue;
   }
 }
 
@@ -59,8 +63,40 @@ function changingTextTotal(tag, text) {
 
 function adicionar() {
   let total = calculation();
-  console.log(sumTotalValues);
-  console.log(total);
-
+  creatingAnElement();
   changingTextTotal("#valor-total", `R$${total},00`);
+}
+
+function creatingAnElement() {
+  let quantity = gettingQuantity();
+  let productIndex = gettingIndexForm();
+
+  let newSection = document.createElement("section");
+  newSection.classList.add("carrinho__produtos__produto");
+
+  let spanQuantity = document.createElement("span");
+  spanQuantity.classList.add("texto-azul");
+
+  let spanTotalValue = document.createElement("span");
+  spanTotalValue.classList.add("texto-azul");
+
+  if (productIndex == 0) {
+    let contentHeadphone = document.createTextNode(headphone);
+    newSection.appendChild(contentHeadphone);
+  }
+
+  if (productIndex == 1) {
+    let contentSmartphone = document.createTextNode(smartphone);
+    newSection.appendChild(contentSmartphone);
+  }
+
+  if (productIndex == 2) {
+    let contentVR = document.createTextNode(vrHeadset);
+    newSection.appendChild(contentVR);
+  }
+
+  // newSection.insertBefore(spanQuantity, content);
+  // newSection.appendChild(spanTotalValue);
+
+  document.getElementById("lista-produtos").appendChild(newSection);
 }
