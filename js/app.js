@@ -16,6 +16,13 @@ function gettingQuantity() {
 selectedBtn.addEventListener("click", gettingIndexForm);
 selectedBtn.addEventListener("click", gettingQuantity);
 
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" || event.key === 13) {
+    event.preventDefault();
+    selectedBtn.click();
+  }
+});
+
 let headphoneValue = 0;
 let smartphoneValue = 0;
 let vrHeadsetValue = 0;
