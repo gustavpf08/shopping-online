@@ -70,7 +70,9 @@ function adicionar() {
 function creatingAnElement() {
   let quantity = gettingQuantity();
   let productIndex = gettingIndexForm();
+  let lastNumber = sumTotalValues[sumTotalValues.length - 1];
 
+  //Criando os elementos
   let newSection = document.createElement("section");
   newSection.classList.add("carrinho__produtos__produto");
 
@@ -79,6 +81,11 @@ function creatingAnElement() {
 
   let spanTotalValue = document.createElement("span");
   spanTotalValue.classList.add("texto-azul");
+
+  // Criando o conteúdo dos elementos
+  let contentQuantity = document.createTextNode(`${quantity}x `);
+  spanQuantity.appendChild(contentQuantity);
+  newSection.appendChild(spanQuantity);
 
   if (productIndex == 0) {
     let contentHeadphone = document.createTextNode(headphone);
@@ -95,8 +102,9 @@ function creatingAnElement() {
     newSection.appendChild(contentVR);
   }
 
-  // newSection.insertBefore(spanQuantity, content);
-  // newSection.appendChild(spanTotalValue);
+  let contentTotalValue = document.createTextNode(` R$${lastNumber},00`);
+  spanTotalValue.appendChild(contentTotalValue);
 
+  newSection.appendChild(spanTotalValue);
   document.getElementById("lista-produtos").appendChild(newSection);
 }
