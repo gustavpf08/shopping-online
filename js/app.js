@@ -1,5 +1,6 @@
 let formOptions = document.getElementById("produto");
 let selectedBtn = document.querySelector(".botao-adicionar");
+let productParent = document.querySelector(".carrinho__produtos");
 
 let sumTotalValues = [1400];
 
@@ -72,6 +73,16 @@ function adicionar() {
   let total = calculation();
   creatingAnElement();
   changingTextTotal("#valor-total", `R$${total},00`);
+}
+
+function limpar() {
+  changingTextTotal("#valor-total", `R$0`);
+  sumTotalValues = [];
+
+  document.getElementById("quantidade").value = 0;
+  while (productParent.firstChild) {
+    productParent.removeChild(productParent.firstChild);
+  }
 }
 
 function creatingAnElement() {
