@@ -4,19 +4,6 @@ let productParent = document.querySelector(".carrinho__produtos");
 
 let sumTotalValues = [1400];
 
-function gettingIndexForm() {
-  let index = formOptions.selectedIndex;
-  return index;
-}
-
-function gettingQuantity() {
-  let quantity = document.querySelector("#quantidade").value;
-  return quantity;
-}
-
-selectedBtn.addEventListener("click", gettingIndexForm);
-selectedBtn.addEventListener("click", gettingQuantity);
-
 document.addEventListener("keydown", function (event) {
   if (event.key === "Enter" || event.key === 13) {
     event.preventDefault();
@@ -24,38 +11,27 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-let headphoneValue = 0;
-let smartphoneValue = 0;
-let vrHeadsetValue = 0;
+function gettingProductName() {
+  let productName = formOptions.value.split("-")[0];
+  return productName;
+}
 
-let headphone = "Fone de Ouvido";
-let smartphone = "Celular";
-let vrHeadset = "Óculos VR";
+function gettingProductValue() {
+  let productValue = formOptions.value.split("$")[1];
+  return productValue;
+}
 
-function addValueProduct(value) {
-  if (value === 0) {
-    headphoneValue = 100;
-    return headphoneValue;
-  }
-
-  if (value === 1) {
-    smartphoneValue = 1400;
-    return smartphoneValue;
-  }
-
-  if (value === 2) {
-    vrHeadsetValue = 5000;
-    return vrHeadsetValue;
-  }
+function gettingQuantity() {
+  let quantity = document.querySelector("#quantidade").value;
+  return quantity;
 }
 
 function calculation() {
-  let productIndex = gettingIndexForm();
+  let value = gettingProductValue();
   let quantityValue = gettingQuantity();
-  let values = addValueProduct(productIndex);
   let sum = 0;
 
-  let calc = values * quantityValue;
+  let calc = value * quantityValue;
   sumTotalValues.push(calc);
 
   for (let i = 0; i < sumTotalValues.length; i++) {
@@ -78,8 +54,8 @@ function adicionar() {
 function limpar() {
   changingTextTotal("#valor-total", `R$0`);
   sumTotalValues = [];
-
   document.getElementById("quantidade").value = 0;
+
   while (productParent.firstChild) {
     productParent.removeChild(productParent.firstChild);
   }
@@ -87,42 +63,12 @@ function limpar() {
 
 function creatingAnElement() {
   let quantity = gettingQuantity();
-  let productIndex = gettingIndexForm();
+  let name = gettingProductName();
   let lastNumber = sumTotalValues[sumTotalValues.length - 1];
 
-  //Criando os elementos
-  let newSection = document.createElement("section");
-  newSection.classList.add("carrinho__produtos__produto");
+  let creatingElements = document.getElementById("lista-produtos");
 
-  let spanQuantity = document.createElement("span");
-  spanQuantity.classList.add("texto-azul");
-
-  let spanTotalValue = document.createElement("span");
-  spanTotalValue.classList.add("texto-azul");
-
-  // Criando o conteúdo dos elementos
-  let contentQuantity = document.createTextNode(`${quantity}x `);
-  spanQuantity.appendChild(contentQuantity);
-  newSection.appendChild(spanQuantity);
-
-  if (productIndex == 0) {
-    let contentHeadphone = document.createTextNode(headphone);
-    newSection.appendChild(contentHeadphone);
-  }
-
-  if (productIndex == 1) {
-    let contentSmartphone = document.createTextNode(smartphone);
-    newSection.appendChild(contentSmartphone);
-  }
-
-  if (productIndex == 2) {
-    let contentVR = document.createTextNode(vrHeadset);
-    newSection.appendChild(contentVR);
-  }
-
-  let contentTotalValue = document.createTextNode(` R$${lastNumber},00`);
-  spanTotalValue.appendChild(contentTotalValue);
-
-  newSection.appendChild(spanTotalValue);
-  document.getElementById("lista-produtos").appendChild(newSection);
+  creatingElements.innerHTML += `<section class="carrinho__produtos__produto">
+      <span class="texto-azul"> ${quantity}x</span> ${name}<span class="texto-azul">R$${lastNumber}</span>
+   </section>`;
 }
