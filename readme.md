@@ -14,6 +14,8 @@ Aqui, podemos adicionar itens ao carrinho, calcular o valor total da compra e li
 
 ### Demonstração do projeto
 
+Aqui podemos ver como ficaria o carrinho após a adição dos itens, bem como o valor total das suas compras. 
+
 ![Preview do projeto estudando lógica de programação](assets/project-preview-2.png)
 
 
